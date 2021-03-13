@@ -71,7 +71,7 @@ public class PlayStationStoreApiService {
 		Game.Builder gameBuilder;
 		if (obj.has("default_sku")) {
 			gameBuilder = new Game.Builder();
-			gameBuilder.setGameStoreId(obj.getString("id"));
+			gameBuilder.setApiId(obj.getString("id"));
 			gameBuilder.setName(cleanGamesName(obj.getString("title_name")));
 			System.out.println(gameBuilder.getName());
 			if (gameBuilder.getName().equals("WRC 8 FIA World Rally Championship")) {

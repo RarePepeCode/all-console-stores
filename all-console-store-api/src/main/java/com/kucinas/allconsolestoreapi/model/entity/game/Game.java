@@ -2,8 +2,11 @@ package com.kucinas.allconsolestoreapi.model.entity.game;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import com.kucinas.allconsolestoreapi.model.IBuilder;
-import com.kucinas.allconsolestoreapi.model.entity.IEntity;
 import com.kucinas.allconsolestoreapi.model.entity.platform.PlatformType;
 
 import lombok.Getter;
@@ -11,19 +14,31 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Game implements IEntity {
+@Entity
+public class Game implements IGame {
 	
+	@Id
 	private Long id;
-	private String gameStoreId;
+	
+	@Column
+	private String apiId;
+	
+	@Column
 	private String name;
+	
+	@Column
 	private BigDecimal price;
+	
+	@Column
 	private String imageUrl;
+	
+	@Column
 	private PlatformType platform;
 	
 	
 	
-	public Game(String gameStoreId, String name, BigDecimal price, String imageUrl, PlatformType platform) {
-		this.gameStoreId = gameStoreId;
+	public Game(String apiId, String name, BigDecimal price, String imageUrl, PlatformType platform) {
+		this.apiId = apiId;
 		this.name = name;
 		this.price = price;
 		this.imageUrl = imageUrl;
@@ -34,19 +49,19 @@ public class Game implements IEntity {
 
 	public static class Builder implements IBuilder<Game> {
 
-		private String gameStoreId;
+		private String apiId;
 		private String name;
 		private BigDecimal price;
 		private String imageUrl;
 		private PlatformType platform;
 		
-		
-		public String getGameStoreId() {
-			return gameStoreId;
+
+		public String getApiId() {
+			return apiId;
 		}
 
-		public void setGameStoreId(String gameStoreId) {
-			this.gameStoreId = gameStoreId;
+		public void setApiId(String apiId) {
+			this.apiId = apiId;
 		}
 
 		public String getName() {
@@ -83,7 +98,7 @@ public class Game implements IEntity {
 
 		@Override
 		public Game build() {
-			return new Game(gameStoreId, name, price, imageUrl, platform);
+			return new Game(apiId, name, price, imageUrl, platform);
 		}
 		
 	}
